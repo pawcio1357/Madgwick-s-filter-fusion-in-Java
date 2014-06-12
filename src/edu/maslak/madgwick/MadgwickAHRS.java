@@ -127,6 +127,21 @@ public class MadgwickAHRS {
         quaternion[3] = q4 * norm;
 	}
 	
+	/**
+	* Algorithm IMU update method. Requires only gyroscope and accelerometer data.
+	* <p>
+    * Optimised for minimal arithmetic. <br>
+    * Total ±: 45 <br>
+    * Total *: 85 <br>
+    * Total /: 3 <br>
+    * Total sqrt: 3
+    * @param gx Gyroscope x axis measurement in radians/s.
+    * @param gy Gyroscope y axis measurement in radians/s.
+    * @param gz Gyroscope z axis measurement in radians/s.
+    * @param ax Accelerometer x axis measurement in any calibrated units.
+    * @param ay Accelerometer y axis measurement in any calibrated units.
+    * @param az Accelerometer z axis measurement in any calibrated units.
+    */
 	public void update(float gx, float gy, float gz, float ax, float ay, float az){
 		float q1 = quaternion[0], q2 = quaternion[1], q3 = quaternion[2], q4 = quaternion[3];   // short name local variable for readability
         float norm;
